@@ -3,7 +3,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:rich="http://richfaces.org/rich">
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
 
 <body>
     <ui:composition template="/templates/template.xhtml">
@@ -11,16 +12,24 @@
         <ui:define name="title">RichFaces Sample</ui:define>
 
         <ui:define name="body">
-            <h:form prependId="false">
-<!--                 <r:chart> -->
-<!-- 					<r:series type="line" data="#{richBean.model}"/> -->
-<!-- 				</r:chart> -->
-<!-- 				<r:chart> -->
-<!-- 					<r:series type="line" data="#{richBean.dateModel}"/> -->
-<!-- 				</r:chart>                  -->
-
+          
+          <h:form>
+            <rich:chart plotClickListener="#{richBean.handler}" >
+              <rich:series type="line" data="#{richBean.model}"/>
+              <a4j:ajax event="plotclick" render="msg" execute="msg"></a4j:ajax>
+            </rich:chart>
+            <h:outputText id="msg" value="#{richBean.msg}" />
             </h:form>
-            <rich:panel/>
+            
+            <rich:chart>
+              <rich:series type="pie" data="#{richBean.pie}"/>
+            </rich:chart>
+            
+            <rich:chart>
+              <rich:series type="bar" data="#{richBean.bar}" label="first"/>
+              <rich:series type="bar" data="#{richBean.abar}" label="second"/>
+            </rich:chart>
+<!--             <rich:panel>Hey hou! 1 2 3</rich:panel> -->
         </ui:define>
     </ui:composition>
 </body>
