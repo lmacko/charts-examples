@@ -16,17 +16,17 @@
           <h:form>
             <rich:chart plotClickListener="#{richBean.handler}" >
               <rich:series type="line" data="#{richBean.model}"/>
-              <a4j:ajax event="plotclick" render="msg" execute="msg"></a4j:ajax>
+              <a4j:ajax event="plotclick" render="msg" execute="msg"/>
             </rich:chart>
             <h:outputText id="msg" value="#{richBean.msg}" />
             </h:form>
             
-            <rich:chart>
+            <rich:chart onplotclick="console.log('pie');">
               <rich:series type="pie" data="#{richBean.pie}"/>
             </rich:chart>
             
-            <rich:chart>
-              <rich:series type="bar" data="#{richBean.bar}" label="first"/>
+            <rich:chart onplothover="console.log('a');" onmouseout="console.log('hey');" onplotclick="console.log('bar');">
+              <rich:series type="bar" data="#{richBean.bar}" label="first" onplotclick="console.log('Bar first series');"/>
               <rich:series type="bar" data="#{richBean.abar}" label="second"/>
             </rich:chart>
 <!--             <rich:panel>Hey hou! 1 2 3</rich:panel> -->
